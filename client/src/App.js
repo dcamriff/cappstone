@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
 // import logo from './logo.svg'
 // import './App.css'
 import SignUpLogIn from './components/SignUpLogIn'
@@ -42,7 +43,7 @@ class App extends Component {
   }
 
   render() {
-    const SignUpLoginComponent = () => (
+    const SignUpLogInComponent = () => (
       <SignUpLogIn
           signUp={this.signUp}
           signIn={this.signIn}/>
