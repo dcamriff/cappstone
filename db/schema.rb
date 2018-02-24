@@ -10,21 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180224202904) do
+ActiveRecord::Schema.define(version: 20180224212304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "items", force: :cascade do |t|
-    t.string "name"
+    t.string "product"
     t.string "description"
     t.string "image"
-    t.decimal "price"
+    t.decimal "price", precision: 2, scale: 2
+    t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "line_items", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "order_id"
+    t.decimal "unit_price", precision: 4, scale: 2
+    t.integer "quantity"
+    t.decimal "total_price", precision: 4, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_line_items_on_item_id"
+    t.index ["order_id"], name: "index_line_items_on_order_id"
+  end
+
   create_table "orders", force: :cascade do |t|
+    t.decimal "subtotal", precision: 4, scale: 2
+    t.decimal "tax", precision: 4, scale: 2
+    t.decimal "tip", precision: 4, scale: 2
+    t.decimal "total", precision: 4, scale: 2
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -60,5 +77,7 @@ ActiveRecord::Schema.define(version: 20180224202904) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "line_items", "items"
+  add_foreign_key "line_items", "orders"
   add_foreign_key "orders", "users"
 end
