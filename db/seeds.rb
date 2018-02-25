@@ -104,7 +104,7 @@ almond_croissant = Item.create!(
 diane = User.create!(
     email: 'diane@testemail.com',
     password: 'password',
-    password_confirmation: 'password'
+    password_confirmation: 'password',
     name: 'Diane'
 )
 diane.orders << cappuccino
@@ -114,13 +114,13 @@ diane.order << chia_pudding
 supriya = User.create!(
     email: 'supriya@testemail.com',
     password: 'password',
-    password_confirmation: 'password'
+    password_confirmation: 'password',
     name: 'Supriya'
 )
 
 ninti = User.create!(
     email: 'ninti@testemail.com',
     password: 'password',
-    password_confirmation: 'password'
+    password_confirmation: 'password',
     name: 'Ninti'
 )
