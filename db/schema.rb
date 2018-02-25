@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20180224212304) do
     t.string "product"
     t.string "description"
     t.string "image"
-    t.decimal "price", precision: 2, scale: 2
+    t.decimal "price"
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 20180224212304) do
   create_table "line_items", force: :cascade do |t|
     t.bigint "item_id"
     t.bigint "order_id"
-    t.decimal "unit_price", precision: 4, scale: 2
+    t.decimal "unit_price"
     t.integer "quantity"
-    t.decimal "total_price", precision: 4, scale: 2
+    t.decimal "total_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_line_items_on_item_id"
@@ -38,10 +38,11 @@ ActiveRecord::Schema.define(version: 20180224212304) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.decimal "subtotal", precision: 4, scale: 2
-    t.decimal "tax", precision: 4, scale: 2
-    t.decimal "tip", precision: 4, scale: 2
-    t.decimal "total", precision: 4, scale: 2
+    t.string "status"
+    t.decimal "subtotal"
+    t.decimal "tax"
+    t.decimal "tip"
+    t.decimal "total"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

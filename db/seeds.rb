@@ -107,9 +107,6 @@ diane = User.create!(
     password_confirmation: 'password',
     name: 'Diane'
 )
-diane.orders << cappuccino
-diane.orders << choc_croissant
-diane.order << chia_pudding
 
 supriya = User.create!(
     email: 'supriya@testemail.com',
